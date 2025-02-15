@@ -8,23 +8,23 @@ const authRoutes = require("./routes/authRoutes");
 const app = express();
 const port = process.env.PORT || 5000;
 
-// ✅ CORS Middleware (Secure, allows frontend requests)
+// Add the CORS configuration here, after app initialization and before routes
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL, // ✅ Set this in .env
+    origin: "https://allcart-frontend.onrender.com",
     credentials: true,
     methods: ["GET", "POST", "PATCH", "DELETE"],
   })
 );
 
-// ✅ Middleware
+// Rest of your middleware
 app.use(express.json());
 
-// ✅ API Routes
+// API Routes
 app.use("/api/products", productRoutes);
 app.use("/api/auth", authRoutes);
 
-// ✅ Default Route
+// Default Route
 app.get("/", (req, res) => res.send("🚀 Server is running..."));
 
 app.listen(port, () => console.log(`🔥 Server running on port ${port}`));
